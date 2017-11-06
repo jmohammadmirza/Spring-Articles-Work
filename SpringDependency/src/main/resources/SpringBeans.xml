@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="OutputHelper" class="com.data.output.OutputHelper">
+	
+	<!-- DI via Setter  DI via Constructor   -->
+		<property name="outputGenerator">
+			<ref bean="CsvOutputGenerator" />
+		</property> 
+		
+		<!-- Comment DI via Setter and  run  -->
+       <constructor-arg>
+			<bean class="com.data.output.impl.JsonOutputGenerator" />
+		</constructor-arg>   	
+	</bean>
+
+<bean id="CsvOutputGenerator" class="com.data.output.impl.CsvOutputGenerator" />
+<bean id="JsonOutputGenerator" class="com.data.output.impl.JsonOutputGenerator" />
+</beans>
